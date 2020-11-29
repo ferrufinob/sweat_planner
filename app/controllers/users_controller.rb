@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+# !How can i redirect user to THEIR view page (not someone elses)
     #LOGIN
     get '/login' do
         redirect_if_logged_in
@@ -10,8 +10,12 @@ class UsersController < ApplicationController
     post '/login' do
         user = User.find_by(email: params[:user][:email])
         if user && user.authenticate(params[:user][:password])
+
+            #creating a key/value pair in the sessions hash for the user actually logs them in
+            #session_hash[key = user_id] = user.id(value) -> from the user object we authenticated
         session[:user_id] = user.id
-        redirect to '/workouts'
+        #!redirect to the users show page
+        redirect to "/users/#{user.id}"
         else
             redirect to '/'
     end
@@ -26,6 +30,13 @@ end
         redirect to '/'
     end
 end
+
+    #Users Show page
+    #shows profile for the specific user
+    get '/users/:id' do
+        redirect_if_not_logged_in
+        "hello"
+    end
 
     #SIGNUP #!creating a new user
     get '/signup' do

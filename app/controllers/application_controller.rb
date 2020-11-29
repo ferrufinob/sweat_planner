@@ -5,8 +5,10 @@ class ApplicationController < Sinatra::Base
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
-    #creates signature that makes it impossible to be changed w/out server knowing
+    #creates signature that makes it impossible to be changed w/out the server knowing
+    #this allows us to lof the user in
     enable :sessions
+    #provides extra layer of security
     set :session_secret, ENV['SESSION_SECRET']
 
   end

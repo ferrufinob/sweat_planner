@@ -28,6 +28,7 @@ workouts:
 ***THIRD***
 - login
 - signup
+- login the user to their indiviual show page '/workouts' wont work do => '/users/:id' instead
 
 ***FOURTH**
 -CREATE: new user can create account, existing user can create a new workout 
@@ -46,6 +47,9 @@ workouts:
 
 
 >>>>We only need password_digest to live on our database for bcrypt purposes<<<<
+>>>.authenticate takes in the plain password from the user, looks at password_digest in our schema, 
+    and compares the plain text password with the salted password. We are never storing plain text password 
+    in our database but we are able to authenticate them.
 
 
 
@@ -55,7 +59,7 @@ Use Sinatra to build the app
  [x]Include at least one has_many relationship on your User model (e.g. User has_many Posts)
  [x]Include at least one belongs_to relationship on another model (e.g. Post belongs_to User)
  [x]Include user accounts with unique login attribute (username or email)
- [ ]Ensure that the belongs_to resource has routes for Creating, Reading, Updating and Destroying
+ []Ensure that the belongs_to resource has routes for Creating, Reading, Updating and Destroying
  [ ]Ensure that users can't modify content created by other users
  [ ]Include user input validations
  [ ]BONUS - not required - Display validation failures to user with error message (example form URL e.g. /posts/new)
