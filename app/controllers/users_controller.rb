@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 # !How can i redirect user to THEIR view page (not someone elses)
     #LOGIN
     get '/login' do
-        redirect_if_logged_in
+        if !logged_in?
         erb :'users/login'
     end
 
@@ -21,6 +21,17 @@ class UsersController < ApplicationController
     end
 end
 
+#Users Show page
+    #shows profile for the specific user
+    get "/users/:id" do
+        #find specific user id to show them their individual page
+       if logged_in? && @user = User.find_by(id: params[:id])
+        erb :'users/index'
+       else
+        redirect to '/'
+    end
+end
+
     #LOGOUT
     get '/logout' do
        if logged_in?
@@ -30,13 +41,6 @@ end
         redirect to '/'
     end
 end
-
-    #Users Show page
-    #shows profile for the specific user
-    get '/users/:id' do
-        redirect_if_not_logged_in
-        "hello"
-    end
 
     #SIGNUP #!creating a new user
     get '/signup' do

@@ -32,7 +32,8 @@ workouts:
 
 ***FOURTH**
 -CREATE: new user can create account, existing user can create a new workout 
--READ: user can view all workouts or an indiviual workout 
+-READ: user can view all workouts or an indiviual workout / add a user show page-> this will link 
+       to the specific users workouts and avoid them or others from seeing workouts that don't belong to them
 -UPDATE: user can edit their workouts
 -DESTROY: user is able to delete their workout
 ### make sure user can't read/edit/or detsroy another users workouts 
@@ -45,6 +46,8 @@ workouts:
 >edit workout(override method = patch)
 >>>delete goes on show page as a link(override method = delete)
 
+
+*FINISHING TOUCHES
 
 >>>>We only need password_digest to live on our database for bcrypt purposes<<<<
 >>>.authenticate takes in the plain password from the user, looks at password_digest in our schema, 

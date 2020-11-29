@@ -22,16 +22,14 @@ class ApplicationController < Sinatra::Base
   helpers do
     
     def logged_in?
-      #method returns true or false if a user is logged in
+      #method returns true or false if a user is logged in or not
       !!current_user
     end
-
+      #find user by their session id
+      #keeps track of logged in user
+      #user.find returns error if user cannot be found, we want a truthy or a falsy output
     def current_user
-      @current_user || User.find(session[:user_id]) if session[:user_id]
-    end
-
-    def redirect_if_logged_in
-      redirect to '/workouts' if logged_in?
+      @current_user || User.find_by(id: session[:user_id]) if session[:user_id]
     end
 
     def redirect_if_not_logged_in
