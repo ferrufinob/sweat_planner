@@ -1,0 +1,69 @@
+Tables
+users:
+:name
+:email
+:password_digest *use securerandom
+=>has_many :workouts
+
+workouts:
+:target_area
+:day_of_week
+:activity
+:duration
+:user_id
+=>belongs_to :user
+
+***FIRST***
+- create tables and migrations
+- make models and associations
+
+***SECOND***
+- create validations
+- cookies & enable sessions 
+- session_secret -> use environment variable
+- create users controller and workouts controller
+- helper methods: redirect_if_not_logged_in?, logged_in?, current_user?
+
+***THIRD***
+- login
+- signup
+
+***FOURTH**
+-CREATE: new user can create account, existing user can create a new workout 
+-READ: user can view all workouts or an indiviual workout 
+-UPDATE: user can edit their workouts
+-DESTROY: user is able to delete their workout
+### make sure user can't read/edit/or detsroy another users workouts 
+
+
+###FORMS###
+>login
+>signup
+>new workout
+>edit workout(override method = patch)
+>>>delete goes on show page as a link(override method = delete)
+
+
+
+
+
+
+Use Sinatra to build the app
+ [ ]Use ActiveRecord for storing information in a database
+ [ ]Include more than one model class (e.g. User, Post, Category)
+ [ ]Include at least one has_many relationship on your User model (e.g. User has_many Posts)
+ [ ]Include at least one belongs_to relationship on another model (e.g. Post belongs_to User)
+ [ ]Include user accounts with unique login attribute (username or email)
+ [ ]Ensure that the belongs_to resource has routes for Creating, Reading, Updating and Destroying
+ [ ]Ensure that users can't modify content created by other users
+ [ ]Include user input validations
+ [ ]BONUS - not required - Display validation failures to user with error message (example form URL e.g. /posts/new)
+ [ ]Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
+
+
+Confirm
+
+ [ ]You have a large number of small Git commits
+ [ ]Your commit messages are meaningful
+ [ ]You made the changes in a commit that relate to the commit message
+ [ ]You don't include changes in a commit that aren't related to the commit message
