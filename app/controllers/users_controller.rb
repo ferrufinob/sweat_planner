@@ -2,34 +2,46 @@ class UsersController < ApplicationController
 
     #LOGIN
     get '/login' do
-        # *if user is already logged in redirect to workouts
-        #else render login form
-        erb :users/login
+        redirect_if_logged_in
+        erb :'users/login'
     end
 
+    #recieve the params from login form
     post '/login' do
-        # *if user exists and can be authenticated redirect them to workouts
-        # *set user session
-        # *else redirect to login
+        user = User.find_by(email: params[:user][:email])
+        if user && user.authenticate(params[:user][:password])
+        session[:user_id] = user.id
+        redirect to '/workouts'
+        else
+            redirect to '/'
     end
+end
 
     #LOGOUT
     get '/logout' do
-        #*clear session
-        #*redirect to login page
+       if logged_in?
+        session.clear
+        redirect to '/login'
+       else 
+        redirect to '/'
     end
+end
 
     #SIGNUP #!creating a new user
     get '/signup' do
-        #*if existing user if logged in redirect to workouts
-        #*else render signup form
+        redirect_if_logged_in
+        erb :'users/signup'
     end
 
     post '/signup' do
-        #*if user persists then set user session
-        #*redirect to workouts
-        #*else redirect to signup form
+        new_user = User.create(name: params[:user][:name], email: params[:user][:email], password: params[:user][:password])
+        if new_user.save
+            session[:user_id] = new_user.id
+            redirect to '/workouts'
+        else
+            redirect to '/signup'
     end
+end
 
 
 end
