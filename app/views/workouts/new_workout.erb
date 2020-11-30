@@ -2,3 +2,15 @@
 <%# use text area to for activity input %>
 <%# can some fields be left blank? how will the blank fields be saved in the database? %>
 <%# provide a radio or drop down of previouly created target_areas? %>
+
+<h2>Workout</h2>
+<form action="/workouts" method="POST">
+<input type="date" name="workout[day_of_week]"> <br>
+<label for="target area">Target Area</label>
+<input type="text" name="workout[target_area]"><br>
+<textarea name="workout[activity]" cols="30" rows="10" onkeypress="press(event)" >Activity</textarea><br>
+<label for="duration">Duration</label>
+<input type="text" name="workout[duration]">
+<input type="submit" value="submit">
+
+</form>

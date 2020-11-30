@@ -1,1 +1,7 @@
-Welcome
+
+<% if @user == current_user%>
+  <h2>Welcome, <%= @user.name%>
+  <%end%>
+  <a href="/workouts">view workouts</a>
+  <a href="/workouts/new">add new workout</a>
+ 

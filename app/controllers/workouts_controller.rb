@@ -2,7 +2,9 @@ class WorkoutsController < ApplicationController
 
     #Index/Shows all workouts
     get '/workouts' do
+        redirect_if_not_logged_in
          #! if not logged in and if not current user display error and redirect to welcome page
+         #!show only the workouts that belong to this user
         @workouts = Workout.all
         erb :'workouts/workouts_list'
     end
@@ -10,7 +12,11 @@ class WorkoutsController < ApplicationController
     #CREATE/NEW
     get '/workouts/new' do
          #! if not logged in and if not current user display error and redirect to welcome page
+         if logged_in?
         erb :'workouts/new_workout'
+         else
+            redirect to '/'
+         end
     end
 
     post '/workouts' do
@@ -19,6 +25,18 @@ class WorkoutsController < ApplicationController
         #*if workout persists, saves new workout or returns false
         #*redirect to workouts
         #*if false render new form
+       
+        if logged_in?
+            workout = Workout.new(params[:workout])
+            if workout.save
+                current_user.workouts = workout
+                redirect to "/workouts/#{workout.id}"
+            else
+                erb :'workouts/new_workout'
+            end
+        else
+            redirect to '/'
+        end
     end
 
     #READ/Shows a specific  workout
