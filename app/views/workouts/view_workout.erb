@@ -1,1 +1,4 @@
-<%=@workout.activity%>
+<!-- If user adds a link I want it to be clickable
+     If user adds more than one line I want then to be separated by line not one long line -->
+<%=@workout.activity.gsub(URI.regexp, '<a href="\0">\0</a>').gsub(/\n/, '<br>')%>
+
