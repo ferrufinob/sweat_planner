@@ -18,14 +18,17 @@ class WorkoutsController < ApplicationController
 
     post '/workouts' do
         redirect_if_not_logged_in
-        if params[:workout] == ""
-            redirect to '/workouts/new'
-        else
-        workout = Workout.create(params[:workout])
-        current_user.workouts << workout
-            redirect to "/workouts/#{workout.id}"
-    
-    end
+         #didn't need a .empty? statement, user is not able to submit form if not able to save
+            workout = Workout.create(params[:workout])
+
+            #workout automatically saves when .save is called
+            if workout.save
+                #need this line to assign the correct workout to corresponding user
+                current_user.workouts << workout
+                redirect to "/workouts/#{workout.id}"
+            else 
+                redirect to '/workouts/new'
+            end
 end
 
     #READ/Shows a specific  workout
