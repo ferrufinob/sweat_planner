@@ -1,0 +1,14 @@
+<h1>Edit Workout</h1>
+<form action="/workouts/<%=@workout.id%>" method="POST">
+  <input type="hidden" name="_method" value="patch">
+  <input type="date" name="workout[date]" value="<%=@workout.date%>">
+  <label for="target area">Target Area</label>
+  <input type="text" name="workout[target_area]" value="<%=@workout.target_area%>"><br>
+  <label for="activity">Activity</label>
+  <textarea name="workout[activity]" cols="30" rows="10"><%=@workout.activity%></textarea>
+   <br>
+  <label for="duration">Duration</label>
+  <input type="text" name="workout[duration]" value="<%=@workout.duration%>">
+  <input type="submit" value="SAVE" >
+</form>
+<a href="/workouts">CANCEL</a>

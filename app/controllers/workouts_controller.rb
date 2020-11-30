@@ -34,6 +34,7 @@ end
     #READ/Shows a specific  workout
     get '/workouts/:id' do
         redirect_if_not_logged_in
+        authorized_user
         @workout = Workout.find_by(id: params[:id])
         erb :'/workouts/view_workout'
          #! if not logged in and if not current user display error and redirect to welcome page
@@ -43,27 +44,30 @@ end
 
     #UPDATE/Edit a specific workout
     get '/workouts/:id/edit' do
-         #! if not logged in and if not current user display error and redirect to welcome page
-        #*get params fro url and define instance variable for viewing
-        #*render edit form
+        redirect_if_not_logged_in
+        authorized_user
+        @workout = Workout.find_by_id(params[:id])
+        erb :'/workouts/edit_workout'
     end
 
     patch '/workouts/:id' do
-         #! if not logged in and if not current user display error and redirect to welcome page
-        #*get params from url, define instance to edit
-        #*assign new attributes
-        #*if workout persists, save edited workout
-        #*redirect back to workouts page
-        #*else render edit form again
+         redirect_if_not_logged_in
+         workout = Workout.find_by_id(params[:id])
+         workout.update(params[:workout])
+         if workout.save
+            current_user.workouts << workout
+            redirect to "/workouts/#{workout.id}"
+         else 
+          redirect to '/workouts/edit_workout'
     end
+end
 
     #DESTROY/Delete a specific workout
     delete '/workouts/:id' do
-         #! if not logged in and if not current user display error and redirect to welcome page
-        #*gets params from url
-        #*define workout to delete in a variable
-        #*workout.destroy deletes workout
-        #*redirect back to workouts
+         redirect_if_not_logged_in
+         workout = Workout.find_by_id(params[:id])
+         workout.destroy
+         redirect to '/workouts'
     end
 
     

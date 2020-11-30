@@ -1,6 +1,9 @@
 require './config/environment'
+require 'rack-flash'
+
 
 class ApplicationController < Sinatra::Base
+
 
   configure do
     set :public_folder, 'public'
@@ -10,8 +13,9 @@ class ApplicationController < Sinatra::Base
     enable :sessions
     #provides extra layer of security
     set :session_secret, ENV['SESSION_SECRET']
-
   end
+  use Rack::Flash
+
 
   get "/" do
     
@@ -40,4 +44,13 @@ class ApplicationController < Sinatra::Base
       redirect to '/login' if !logged_in?
     end
   end
+
+    def authorized_user
+      workout = Workout.find_by_id(params[:id])
+      unless workout.user_id == current_user.id
+        flash[:errorr] = "unauthorized"
+        redirect to '/'
+      end
+
+    end
 end

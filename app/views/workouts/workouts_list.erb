@@ -2,6 +2,6 @@
 <a href="/workouts/new">new workout</a><br>
 <h2>Workouts:</h2>
 <% current_user.workouts.each do |t|%>
-  <a href="/workouts/<%=t.id%>"><br>
+  <%=t.date.strftime("%A, %B %d")%><a href="/workouts/<%=t.id%>"><br>
     <%=t.target_area%></a><br>
 <%end%>
