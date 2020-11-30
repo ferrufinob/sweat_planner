@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20201129044348) do
+ActiveRecord::Schema.define(version: 20201130104329) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -20,11 +20,11 @@ ActiveRecord::Schema.define(version: 20201129044348) do
   end
 
   create_table "workouts", force: :cascade do |t|
-    t.string  "day_of_week"
     t.string  "target_area"
     t.string  "activity"
     t.string  "duration"
     t.integer "user_id"
+    t.date    "date"
   end
 
 end

@@ -5,42 +5,34 @@ class WorkoutsController < ApplicationController
         redirect_if_not_logged_in
          #! if not logged in and if not current user display error and redirect to welcome page
          #!show only the workouts that belong to this user
-        @workouts = Workout.all
+        # @workouts = Workout.all
         erb :'workouts/workouts_list'
     end
 
     #CREATE/NEW
     get '/workouts/new' do
+        redirect_if_not_logged_in
+        erb :'/workouts/new_workout'
          #! if not logged in and if not current user display error and redirect to welcome page
-         if logged_in?
-        erb :'workouts/new_workout'
-         else
-            redirect to '/'
-         end
     end
 
     post '/workouts' do
-        #! if not logged in and if not current user display error and redirect to welcome page
-        #*create new workout
-        #*if workout persists, saves new workout or returns false
-        #*redirect to workouts
-        #*if false render new form
-       
-        if logged_in?
-            workout = Workout.new(params[:workout])
-            if workout.save
-                current_user.workouts = workout
-                redirect to "/workouts/#{workout.id}"
-            else
-                erb :'workouts/new_workout'
-            end
+        redirect_if_not_logged_in
+        if params[:workout] == ""
+            redirect to '/workouts/new'
         else
-            redirect to '/'
-        end
+        workout = Workout.create(params[:workout])
+        current_user.workouts << workout
+            redirect to "/workouts/#{workout.id}"
+    
     end
+end
 
     #READ/Shows a specific  workout
     get '/workouts/:id' do
+        redirect_if_not_logged_in
+        @workout = Workout.find_by(id: params[:id])
+        erb :'/workouts/view_workout'
          #! if not logged in and if not current user display error and redirect to welcome page
         #*find by id, save in an instance variable for view file
         #*render single workout view

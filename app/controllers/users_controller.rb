@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     #LOGIN
     get '/login' do
         if logged_in?
-            redirect to "/users/#{current_user.id}"
+            redirect to "/workouts"
         else
             erb :'users/login'   
     end
@@ -20,8 +20,7 @@ end
             #creating a key/value pair in the sessions hash for the user actually logs them in
             #session_hash[key = user_id] = user.id(value) -> from the user object we authenticated
         session[:user_id] = user.id
-        #!redirect to the users show page
-        redirect to "/users/#{user.id}"
+        redirect to '/workouts'
         else
             redirect to '/login'
     end
@@ -42,7 +41,7 @@ end
         if !logged_in?
         erb :'users/signup'
         else 
-            erb :'users/index'
+            redirect to '/workouts'
     end
 end
 
@@ -50,22 +49,11 @@ end
         new_user = User.create(name: params[:user][:name], email: params[:user][:email], password: params[:user][:password])
         if new_user.save
             session[:user_id] = new_user.id
-            redirect to '/users/#{new_user.id}'
+            redirect to '/workouts'
         else
             redirect to '/signup'
     end
 end
 
-#Users Show page
-    #shows profile for the specific user
-    get "/users/:id" do
-        #! i am able to access other users pages by changing id in browser, how can i fix this?
-        if logged_in? && @user = User.find_by(id: params[:id])
-        erb :'users/index'
-       else
-        redirect to '/'
-        #If logged in and the current users session matches the user id, let hem view show page
-    end
-end
 
 end

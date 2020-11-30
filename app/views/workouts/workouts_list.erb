@@ -1,8 +1,7 @@
-<h1>Workouts:</h1>
-<% if @workouts.empty? %>
-<h2>no workouts to display</h2>
-<%else%>
-<% @workouts.each do |workout|%>
-<%=workout.day_of_week%> <a href="/workouts/<%=workout.id%>"><br><%=workout.target_area%></a><br><br>
-<%end%>
+<h1>Welcome, <%= current_user.name %> </h1>
+<a href="/workouts/new">new workout</a><br>
+<h2>Workouts:</h2>
+<% current_user.workouts.each do |t|%>
+  <a href="/workouts/<%=t.id%>"><br>
+    <%=t.target_area%></a><br>
 <%end%>

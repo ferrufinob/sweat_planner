@@ -18,7 +18,7 @@ class ApplicationController < Sinatra::Base
     if !logged_in?
      erb :welcome
     else
-      redirect to "/users/#{current_user.id}"
+      redirect to '/workouts'
     end
   end
 
