@@ -1,8 +1,5 @@
 class UsersController < ApplicationController
-    #!Concerns:
-# !How can i redirect user to THEIR view page (not someone elses)
-#! If user were to click back and land on '/' they get a no name method erro, how can i fix this?
-#! i can hide information in views as well, hide info in view if not current
+ # !How can I display Flash error?
     #LOGIN
     get '/login' do
         if logged_in?

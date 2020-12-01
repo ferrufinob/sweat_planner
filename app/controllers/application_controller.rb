@@ -1,7 +1,6 @@
 require './config/environment'
 require 'rack-flash'
 
-
 class ApplicationController < Sinatra::Base
 
 
@@ -45,12 +44,14 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-    def authorized_user
+  #if another user were to mess with the url and land on another users workout
+  #it would be impossible to view/edit/or delete, they will be redirected to welcome page
+    def show_if_authorized_user
       workout = Workout.find_by_id(params[:id])
       unless workout.user_id == current_user.id
-        flash[:errorr] = "unauthorized"
+        flash[:message] = "unauthorized"
         redirect to '/'
       end
-
     end
+    
 end
