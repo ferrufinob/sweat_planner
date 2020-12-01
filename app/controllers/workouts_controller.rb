@@ -23,8 +23,10 @@ class WorkoutsController < ApplicationController
             if workout.save
                 #need this line to assign the correct workout to its corresponding user
                 current_user.workouts << workout
+                flash[:message] = "Successfully Created Workout"
                 redirect to "/workouts/#{workout.id}"
             else 
+                flash[:message] = "Please Fill all Fields"
                 redirect to '/workouts/new'
             end
 end
@@ -33,21 +35,20 @@ end
     get '/workouts/:id' do
         redirect_if_not_logged_in
         show_if_authorized_user
-        @workout = Workout.find_by(id: params[:id])
         erb :'/workouts/view_workout'
     end
 
     #UPDATE/Edit a specific workout
     get '/workouts/:id/edit' do
+        #checks if user is logged in
         redirect_if_not_logged_in
+        #checks if workout_user_id matches the current_user.id
         show_if_authorized_user
-        @workout = Workout.find_by_id(params[:id])
         erb :'/workouts/edit_workout'
     end
 
     patch '/workouts/:id' do
         #similar to new but we use .update
-         redirect_if_not_logged_in
          workout = Workout.find_by_id(params[:id])
          workout.update(params[:workout])
          if workout.save
@@ -55,14 +56,14 @@ end
             flash[:message] = "Successfully Updated Workout"
             redirect to "/workouts/#{workout.id}"
          else 
+            flash[:message] = "Please Fill all Fields"
           redirect to '/workouts/edit_workout'
     end
 end
 
     #DESTROY/Delete a specific workout
     delete '/workouts/:id' do
-         redirect_if_not_logged_in
-         show_if_authorized_user
+        #  redirect_if_not_logged_in
          workout = Workout.find_by_id(params[:id])
          workout.destroy
          flash[:message] = "Successfully Deleted Workout"

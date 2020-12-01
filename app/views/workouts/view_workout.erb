@@ -1,9 +1,8 @@
 <!-- If user adds a link I want it to be clickable
      If user adds more than one line I want then to be separated by line not one long line -->
-
-     <% if flash[:message].blank? %>
-     <h1>Blank</h1>
-     <%end%>
+<% if flash.has?(:message) %>
+  <%= flash[:message] %>
+<% end %>
 <ul>
   <li><%=@workout.date%>
     <li> <br>
@@ -12,14 +11,14 @@
       <br>
       <br>
       <h2>Activity</h2>
-      <li><%=@workout.activity.gsub(URI.regexp, '<a href="\0">\0</a>').gsub(/\n/, '<br>' '<br>')%>
+      <li><%=@workout.activity.gsub(URI.regexp,'<a href="\0">\0</a>').gsub(/\n/, '<br>' '<br>')%>
         <li> <br>
           <h2>Duration</h2>
           <li><%=@workout.duration%></li>
         </ul>
         <form action="/workouts/<%=@workout.id%>" method="POST">
-            <input type="hidden" name="_method" value="DELETE">
-            <input type="submit" value="DELETE">
-          </form>
-          <a href="/workouts">HOME</a>
-          <a href="/workouts/<%=@workout.id%>/edit">EDIT</a>
+          <input type="hidden" name="_method" value="DELETE">
+          <input type="submit" value="DELETE">
+        </form>
+        <a href="/workouts">HOME</a>
+        <a href="/workouts/<%=@workout.id%>/edit">EDIT</a>
