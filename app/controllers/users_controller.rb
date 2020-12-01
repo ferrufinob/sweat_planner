@@ -57,11 +57,10 @@ end
     get "/users/:id/edit" do
         redirect_if_not_logged_in
         @user = current_user
-        if logged_in? && @user
+        if @user
         erb :'users/index'
        else
         redirect to '/'
-        #If logged in and the current users session matches the user id, let hem view show page
     end
 end
 
