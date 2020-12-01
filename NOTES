@@ -78,15 +78,5 @@ Confirm
 
 
 ADD THIS LATER 
-#Users Show page
-    #shows profile for the specific user
-#     get "/users/:id" do
-#         #! i am able to access other users pages by changing id in browser, how can i fix this?
-#         if logged_in? && @user = User.find_by(id: params[:id])
-#         erb :'users/index'
-#        else
-#         redirect to '/'
-#         #If logged in and the current users session matches the user id, let hem view show page
-#     end
-# end
+
 

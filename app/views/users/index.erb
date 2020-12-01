@@ -1,0 +1,12 @@
+
+<h1>Update you profile</h1>
+<form action="/users/<%=@user.id%>" method="POST">
+<input type="hidden" name="_method" value="PATCH">
+<label for="name">Name</label>
+<input type="text" name="user[name]" value="<%=@user.name%>">
+<label for="email">Email</label>
+<input type="text" name="user[email]" value="<%=@user.email%>">
+<label for="password">Password</label>
+<input type="text" name="user[password]" value="<%=@user.password%>">
+<input type="submit" name="Update">
+</form>

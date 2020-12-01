@@ -49,9 +49,10 @@ class ApplicationController < Sinatra::Base
 
     #checks if the workout to display really belongs to the logged in user
     def show_if_authorized_user
+      #need it to be an instance variable in order to access workouts
       @workout = Workout.find_by_id(params[:id])
       unless @workout.user == current_user
-        flash[:message] = "unauthorized"
+        flash[:error] = "Unauthorized Action"
         redirect to '/'
       end
     end
