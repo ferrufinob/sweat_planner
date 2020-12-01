@@ -1,5 +1,5 @@
 puts "users"
-User.create(name: "Brenda", email: "ferruf@ferruf.com", password: "password")
+User.create(name: "Brenda", email: "ei", password: "password")
 puts "user created"
 
 puts "workout"

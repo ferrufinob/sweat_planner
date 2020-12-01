@@ -53,30 +53,28 @@ end
 end
 
 
-    # Users Show page
+    # Users Account Show Page
     get "/users/:id/edit" do
+        #prevents unauthorized user from viewing another users account info
         redirect_if_not_logged_in
+        #prevent another user from changing personal info if tempering with url
         @user = current_user
         if @user
         erb :'users/index'
-       else
-        redirect to '/'
-    end
-end
+        end
+    end 
+
 
     patch '/users/:id' do
-        user = User.find_by_id(params[:id])
-        if  current_user
-           user.name = params[:user][:name]
-           user.email = params[:user][:email]
-           user.password = params[:user][:password]
-           user.save
+        #if unauthorized user gets access of show page password can't be accessed and any attempted changes wont be saved
+        redirect_if_not_logged_in
+        user = current_user
+           user.update(params[:user])
+           if user.save
            redirect to '/workouts'
         else
-            redirect to '/'
+            redirect to  "/users/#{user.id}/edit"
         end
-end
-       
-
+    end
 
 end

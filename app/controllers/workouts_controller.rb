@@ -5,6 +5,7 @@ class WorkoutsController < ApplicationController
     #Index/Shows all workouts
     get '/workouts' do
         @user = current_user
+        @workouts = current_user.workouts
         redirect_if_not_logged_in
         erb :'workouts/workouts_list'
     end
@@ -17,9 +18,8 @@ class WorkoutsController < ApplicationController
 
     post '/workouts' do
         redirect_if_not_logged_in
-         # didn't need a .empty? statement,model validations were added, workout won't save if empty
          # user is not able to submit form if not able to save(can't save empty fields)
-            workout = Workouts.create(params[:workout])
+            workout = Workout.create(params[:workout])
 
             #workout automatically saves when .save is called
             if workout.save

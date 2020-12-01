@@ -1,5 +1,5 @@
 
-<h1>Update you profile</h1>
+<h1>Update you Account</h1>
 <form action="/users/<%=@user.id%>" method="POST">
 <input type="hidden" name="_method" value="PATCH">
 <label for="name">Name</label>
@@ -7,7 +7,7 @@
 <label for="email">Email</label>
 <input type="text" name="user[email]" value="<%=@user.email%>">
 <label for="password">Password</label>
-<input type="password" name="user[password]" value="<%=@user.password%>">
+<input type="text" name="user[password]">
 <input type="submit" name="Update">
 </form>
 <a href="/workouts">CANCEL</a>
