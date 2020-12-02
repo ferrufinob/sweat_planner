@@ -77,6 +77,7 @@ Confirm
  [ ]You don't include changes in a commit that aren't related to the commit message
 
 
-ADD THIS LATER 
+#creating a key/value pair in the sessions hash for the user actually logs them in
+ #session_hash[key = user_id] = user.id(value) -> from the user object we authenticated
 
 

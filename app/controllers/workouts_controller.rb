@@ -25,10 +25,10 @@ class WorkoutsController < ApplicationController
             if workout.save
                 #need this line to assign the correct workout to its corresponding user
                 current_user.workouts << workout
-                flash[:message] = "Successfully Created Workout"
+                flash[:notice] = "Successfully Created Workout"
                 redirect to "/workouts/#{workout.id}"
             else 
-                flash[:message] = "Please Fill all Fields"
+                flash[:notice] = "Please Fill all Fields"
                 redirect to '/workouts/new'
             end
 end
@@ -36,7 +36,9 @@ end
     #READ/Shows a specific  workout
     get '/workouts/:id' do
         redirect_if_not_logged_in
+        
         show_if_authorized_user
+        flash[:notice] = "Testing!!!"
         erb :'/workouts/view_workout'
     end
 
@@ -50,19 +52,17 @@ end
     end
 
     patch '/workouts/:id' do
-        #similar to new but we use .update
-         workout = Workout.find_by_id(params[:id])
-         #prevents from info being altered if hijacked form
-         show_if_authorized_user
-         
-         workout.update(params[:workout])
-         if workout.save
-            current_user.workouts << workout
-            flash[:message] = "Successfully Updated Workout"
-            redirect to "/workouts/#{workout.id}"
+        
+         @workout = Workout.find_by_id(params[:id])
+         @workout.update(params[:workout])
+
+         if @workout.save
+            current_user.workouts << @workout
+            flash[:notice] = "Successfully Updated Workout"
+            redirect to "/workouts/#{@workout.id}"
          else 
-            flash[:message] = "Please Fill all Fields"
-          redirect to '/workouts/edit_workout'
+            flash[:notice] = "Please Fill all Fields"
+          erb :'/workouts/edit_workout'
     end
 end
 
@@ -76,7 +76,7 @@ end
             redirect to '/'
          else
          workout.destroy
-         flash[:message] = "Successfully Deleted Workout"
+         flash[:notice] = "Successfully Deleted Workout"
          redirect to '/workouts'
     end
 end

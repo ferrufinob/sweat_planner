@@ -1,4 +1,7 @@
 <h1>Edit Workout</h1>
+<% if flash.has?(:notice)%>
+  <%= flash[:notice] %>
+<% end %>
 <form action="/workouts/<%=@workout.id%>" method="POST">
   <input type="hidden" name="_method" value="patch">
   <input type="date" name="workout[date]" value="<%=@workout.date%>">
@@ -6,7 +9,7 @@
   <input type="text" name="workout[target_area]" value="<%=@workout.target_area%>"><br>
   <label for="activity">Activity</label>
   <textarea name="workout[activity]" cols="30" rows="10"><%=@workout.activity%></textarea>
-   <br>
+  <br>
   <label for="duration">Duration</label>
   <input type="text" name="workout[duration]" value="<%=@workout.duration%>">
   <input type="submit" value="SAVE" >

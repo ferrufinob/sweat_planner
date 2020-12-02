@@ -1,7 +1,7 @@
 <!-- If user adds a link I want it to be clickable
      If user adds more than one line I want then to be separated by line not one long line -->
-<% if flash.has?(:message) %>
-  <%= flash[:message] %>
+<% if flash.has?(:notice)%>
+  <%= flash[:notice] %>
 <% end %>
 <ul>
   <li><%=@workout.date%>
