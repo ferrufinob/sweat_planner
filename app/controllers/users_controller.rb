@@ -51,6 +51,8 @@ class UsersController < ApplicationController
             end
         end
 
+# An option is User wants to Update their Account
+
 
     # Users Account Show Page
         get "/users/:id/edit" do

@@ -1,13 +1,37 @@
-<% if flash.has?(:notice)%>
-  <%= flash[:notice] %>
-<% end %>
-<h1>Welcome, <%= current_user.name %> </h1>
-<a href="/workouts/new">new workout</a><br>
-<h2>Workouts:</h2>
+<section class="hero is-dark ">
+<div class="hero-body">
+  <div class= "container has-text-centered">
+     <h1 class= "title">
+        Sweat Planner
+     </h1>
+    </div>
+  </div>
+</section>
+     
+    <!-- Nav Buttons -->
+<div class="buttons is-centered">
+<button class="button is-light"><a href="/workouts/new">New Workout</a></button>
+<button class="button is-light"><a href="/users/<%=current_user.id%>/edit">Update Account</a></button>
+<button class="button is-light"><a href="/logout">Log out</a></button>
+</div>
+    
+ 
+     
+<!-- Workouts Show List -->
+
+<div class="box">
 <% current_user.workouts.each do |t|%>
-  <%=t.date.strftime("%A, %B %d")%><a href="/workouts/<%=t.id%>"><br>
-    <%=t.target_area%></a><br>
-<%end%>
-<br>
-<a href="/logout">LOGOUT</a>
-<a href="/users/<%=current_user.id%>/edit">Update Account</a>
+<a href="/workouts/<%=t.id%>">
+  <br>
+<div class="box">
+  <h5 class="title is-6">
+  <%=t.date.strftime("%A, %B %d")%></br>
+</h5>
+  <h4 class="subtitle is-4 has-text-grey-dark">
+  <%=t.target_area%></br>
+</h4>
+</div>
+   <%end%>
+  </div> 
+</div>
+      
