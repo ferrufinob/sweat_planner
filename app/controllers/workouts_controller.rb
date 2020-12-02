@@ -4,8 +4,6 @@ class WorkoutsController < ApplicationController
 
     #Index/Shows all workouts
     get '/workouts' do
-        @user = current_user
-        @workouts = current_user.workouts
         redirect_if_not_logged_in
         erb :'workouts/workouts_list'
     end
@@ -25,20 +23,18 @@ class WorkoutsController < ApplicationController
             if workout.save
                 #need this line to assign the correct workout to its corresponding user
                 current_user.workouts << workout
-                flash[:notice] = "Successfully Created Workout"
                 redirect to "/workouts/#{workout.id}"
             else 
-                flash[:notice] = "Please Fill all Fields"
-                redirect to '/workouts/new'
+                flash[:notice] = "Fields can't be blank"
+                erb :'/workouts/new_workout'
             end
 end
 
     #READ/Shows a specific  workout
     get '/workouts/:id' do
         redirect_if_not_logged_in
-        
+        #checking if workout belongs to current user and if workout exists
         show_if_authorized_user
-        flash[:notice] = "Testing!!!"
         erb :'/workouts/view_workout'
     end
 
@@ -46,7 +42,7 @@ end
     get '/workouts/:id/edit' do
         #checks if user is logged in
         redirect_if_not_logged_in
-        #checks if workout_user_id matches the current_user.id
+        #checking if workout belongs to current user and if workout exists
         show_if_authorized_user
         erb :'/workouts/edit_workout'
     end
@@ -58,10 +54,9 @@ end
 
          if @workout.save
             current_user.workouts << @workout
-            flash[:notice] = "Successfully Updated Workout"
             redirect to "/workouts/#{@workout.id}"
          else 
-            flash[:notice] = "Please Fill all Fields"
+            flash[:notice] = "Fields can't be blank"
           erb :'/workouts/edit_workout'
     end
 end
@@ -72,11 +67,9 @@ end
          workout = Workout.find_by_id(params[:id])
          #make sure its the logged in user that deleted workout
          if workout.user != current_user
-            flash[:error] = "Unauthorized Action"
             redirect to '/'
          else
          workout.destroy
-         flash[:notice] = "Successfully Deleted Workout"
          redirect to '/workouts'
     end
 end

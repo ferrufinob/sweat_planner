@@ -1,10 +1,13 @@
-<h1>Welcome, <%= @user.name %> </h1>
+<% if flash.has?(:notice)%>
+  <%= flash[:notice] %>
+<% end %>
+<h1>Welcome, <%= current_user.name %> </h1>
 <a href="/workouts/new">new workout</a><br>
 <h2>Workouts:</h2>
-<% @workouts.each do |t|%>
+<% current_user.workouts.each do |t|%>
   <%=t.date.strftime("%A, %B %d")%><a href="/workouts/<%=t.id%>"><br>
     <%=t.target_area%></a><br>
 <%end%>
 <br>
 <a href="/logout">LOGOUT</a>
-<a href="/users/<%=@user.id%>/edit">Update Account</a>
+<a href="/users/<%=current_user.id%>/edit">Update Account</a>

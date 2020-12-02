@@ -15,10 +15,6 @@ class ApplicationController < Sinatra::Base
   end
 
 
-    error 400..510 do 
-        "Caught in Error"
-      end
-    
       get "/" do
         if !logged_in?
           erb :welcome
@@ -27,6 +23,10 @@ class ApplicationController < Sinatra::Base
         end
       end
 
+      
+      error 400..510 do 
+        "Caught in Error"
+      end
 
       helpers do
         
@@ -50,8 +50,7 @@ class ApplicationController < Sinatra::Base
         def show_if_authorized_user
           if @workout = Workout.find_by_id(params[:id])
             unless @workout.user == current_user
-              flash[:error] = "Unauthorized Action"
-              redirect to '/'
+               redirect to '/'
             end
           else
             redirect to '/workouts'

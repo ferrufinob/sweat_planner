@@ -1,7 +1,6 @@
-<%# potentially make a drop radio for user to select day of week they are creating from %>
-<%# use text area to for activity input %>
-<%# can some fields be left blank? how will the blank fields be saved in the database? %>
-<%# provide a radio or drop down of previouly created target_areas? %>
+<% if flash.has?(:notice)%>
+  <%= flash[:notice] %>
+<% end %>
 <h2>Workout</h2>
 <form action="/workouts" method="POST">
   <input type="date" name="workout[date]">
