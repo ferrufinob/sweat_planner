@@ -1,13 +1,33 @@
-<h2>SIGN UP</h2>
-<% if @errors%>
-  <%@errors.each do |t|%>
-    <%=t%><br>
-  <%end%>
-<%end%>
-<form action="/signup" method="POST">
-  <input type="text" name="user[name]" placeholder="name">
-  <input type="text" name="user[email]" placeholder="email">
-  <input type="password" name="user[password]" placeholder="password">
-  <input type="submit" value="SIGNUP">
-</form>
-Already Have an Account?<a href="/login">LOGIN</a>
+  
+<div class="hero is-fullheight is-light">
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <div class="column is-8 is-offset-2">
+        <h3 class="title has-text-dark">SIGNUP</h3>
+        <hr class="login-hr">
+        <div class="title has-text-grey is-5">Please enter your email and password.</div>
+        <form action="/signup" method="POST">
+          <div class="field">
+            <div class="control">
+              <input class="input is-large" type="name" name="user[name]" placeholder="Name">
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <input class="input is-large" type="text" name="user[email]" placeholder="Email">
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <input class="input is-large" type="text" name="user[password]" placeholder="Password">
+              <button class="button is-block is-dark is-large is-fullwidth" type="submit">SIGNUP</button>
+              <p class="has-text-grey">
+                Already Have an Account? <a href="/signup">Log IN</a>
+              </p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

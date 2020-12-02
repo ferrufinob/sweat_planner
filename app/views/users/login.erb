@@ -1,7 +1,38 @@
-<h2>LOGIN</h2>
+<!-- <h2>LOGIN</h2>
 <form action="/login" method="POST">
   <input type="text" name="user[email]" placeholder="email">
   <input type="text" name="user[password]" placeholder="password">
   <input type="submit" value="LOGIN">
 </form>
-Don't Have an Account? <a href="/signup">Sign Up</a>
+Don't Have an Account? <a href="/signup">Sign Up</a> -->
+
+<div class="hero is-fullheight is-light">
+ 
+  
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <div class="column is-8 is-offset-2">
+        <h3 class="title has-text-dark">LOGIN</h3>
+        <hr class="login-hr">
+        <div class="title has-text-grey is-5">Please enter your email and password.</div>
+        <form action="/login" method="POST">
+          <div class="field">
+            <div class="control">
+              <input class="input is-large" type="text" name="user[email]" placeholder="Email">
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <input class="input is-large" type="text" name="user[password]" placeholder="Password">
+              <button class="button is-block is-dark is-large is-fullwidth" type="submit">Login</button>
+              <p class="has-text-grey">
+                Don't Have an Account? <a href="/signup">Sign Up</a> 
+              </p>
+            </div>
+          </div>
+        </form>
+  </div>
+</div>
+</div>
+</div>
