@@ -46,7 +46,7 @@ class ApplicationController < Sinatra::Base
       end
 
         #checks if the workout to display really belongs to the logged in user
-        #if workout exist take to workout home page
+        #if workout doesn't exist/is nil take back to workout home page
         def show_if_authorized_user
           if @workout = Workout.find_by_id(params[:id])
             unless @workout.user == current_user

@@ -31,7 +31,7 @@ class UsersController < ApplicationController
             end
         end
 
-    #SIGNUP #!creating a new user
+    #SIGNUP 
         get '/signup' do
             if !logged_in?
                 erb :'users/signup'
@@ -57,8 +57,7 @@ class UsersController < ApplicationController
              #prevents unauthorized user from viewing another users account info
              redirect_if_not_logged_in
             #prevent another user from changing personal info if tempering with url
-            @user = current_user
-            if @user
+            if current_user
             erb :'users/index'
             end
         end 

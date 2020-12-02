@@ -1,33 +1,64 @@
-  
+<section class="hero">
+  <div
+    class="hero-head has-background-danger-light has-text-centered has-text-weight-medium has-text-danger"
+  >
+    <div class="container">
+      <% if @errors%> <%@errors.each do |error|%> <%=error%><br />
+        <%end%> <%end%>
+    </div>
+  </div>
+</section>
 <div class="hero is-fullheight is-light">
   <div class="hero-body">
     <div class="container has-text-centered">
-      <div class="column is-8 is-offset-2">
-        <h3 class="title has-text-dark">SIGNUP</h3>
-        <hr class="login-hr">
-        <div class="title has-text-grey is-5">Please enter your email and password.</div>
+      <div class="column is-4 is-offset-4">
+        <h3 class="title has-text-dark">SIGN UP</h3>
+        <hr class="login-hr" />
+        <div class="title has-text-grey is-6">
+          Create your account by filling the form below.
+        </div>
         <form action="/signup" method="POST">
           <div class="field">
             <div class="control">
-              <input class="input is-large" type="name" name="user[name]" placeholder="Name">
+              <input
+                class="input is-small"
+                type="name"
+                name="user[name]"
+                placeholder="Name"
+              />
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <input
+                class="input is-small"
+                type="text"
+                name="user[email]"
+                placeholder="Email"
+              />
+                </div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <input
+                class="input is-small"
+                type="text"
+                name="user[password]"
+                placeholder="Password"
+              />
+                    <button
+                class="button is-block is-dark is-small is-fullwidth"
+                type="submit"
+              >
+                      SIGN UP
+                    </button>
+                    <p class="has-text-grey">
+                      Already a member? <a href="/login">Log in</a>
+                    </p>
+                  </div>
+                </div>
+              </form>
             </div>
           </div>
-          <div class="field">
-            <div class="control">
-              <input class="input is-large" type="text" name="user[email]" placeholder="Email">
-            </div>
-          </div>
-          <div class="field">
-            <div class="control">
-              <input class="input is-large" type="text" name="user[password]" placeholder="Password">
-              <button class="button is-block is-dark is-large is-fullwidth" type="submit">SIGNUP</button>
-              <p class="has-text-grey">
-                Already Have an Account? <a href="/signup">Log IN</a>
-              </p>
-            </div>
-          </div>
-        </form>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
