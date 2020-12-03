@@ -1,21 +1,31 @@
-<!-- If user adds a link I want it to be clickable
-     If user adds more than one line I want then to be separated by line not one long line -->
-<ul>
-  <li><%=@workout.date%>
-    <li> <br>
-      <h2>Target Area</h2>
-      <li><%=@workout.target_area%></li>
-      <br>
-      <br>
-      <h2>Activity</h2>
-      <li><%=@workout.activity.gsub(URI.regexp,'<a href="\0">\0</a>').gsub(/\n/, '<br>' '<br>')%>
-        <li> <br>
-          <h2>Duration</h2>
-          <li><%=@workout.duration%></li>
-        </ul>
-        <form action="/workouts/<%=@workout.id%>" method="POST">
-          <input type="hidden" name="_method" value="DELETE">
-          <input type="submit" value="DELETE">
-        </form>
-        <a href="/workouts">HOME</a>
-        <a href="/workouts/<%=@workout.id%>/edit">EDIT</a>
+<div class="box">
+  <section class="hero is-dark">
+    <div class="hero-body">
+      <!-- Target Type and Date  Section-->
+      <div class="container has-text-centered">
+        <h4 class="title is-3"><%=@workout.target_area%></h4>
+        <p class="subtitle is-5"><%=@workout.date.strftime("%A, %B %d")%></p>
+      </div>
+    </div>
+  </section>
+  <!-- Home and and Delete Navigation -->
+  <div class="buttons is-centered">
+    <button class="button is-primary is-outlined">
+      <a href="/workouts/workouts">Home</a>
+    </button>
+    <button class="button is-primary is-outlined">
+      <a href="/workouts/<%=@workout.id%>/edit">Edit</a>
+    </button>
+  </div>
+</div>
+
+<!-- Activity & Date Section -->
+<div class="box has-text-centered">
+  <p class="title is-4">Activity Planned Today:</p>
+  <div class="subtitle is-5 has-text-weight-semibold">
+    <%=@workout.activity.gsub(URI.regexp,'<a href="\0">\0</a>').gsub(/\n/, '<br />')%>
+  </div>
+  <div class="has-text-danger has-text-centered">
+    Duration: <%=@workout.duration%>
+  </div>
+</div>
