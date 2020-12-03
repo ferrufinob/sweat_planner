@@ -15,7 +15,7 @@
 </div>
 <!-- Workouts Show List -->
 <div class="box">
-  <% current_user.workouts.each do |t|%>
+  <%current_user.workouts.each do |t|%>
     <a href="/workouts/<%=t.id%>">
       <br>
       <div class="box">
@@ -24,7 +24,6 @@
           <%=t.date.strftime("%A, %B %d")%></br>
       </h5>
       <div class="has-text-right">
-        
         <!-- DELETE FORM -->
         <form action="/workouts/<%=t.id%>" method="POST">
           <input type="hidden" name="_method" value="DELETE">

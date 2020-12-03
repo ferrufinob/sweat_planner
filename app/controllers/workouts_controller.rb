@@ -40,7 +40,6 @@ end
 
     #UPDATE/Edit a specific workout
     get '/workouts/:id/edit' do
-        #checks if user is logged in
         redirect_if_not_logged_in
         #checking if workout belongs to current user and if workout exists
         show_if_authorized_user
@@ -65,7 +64,7 @@ end
     delete '/workouts/:id' do
          redirect_if_not_logged_in
          workout = Workout.find_by_id(params[:id])
-         #make sure its the logged in user that deleted workout
+         #make sure its the logged in user that deleted the workout
          if workout.user != current_user
             redirect to '/'
          else

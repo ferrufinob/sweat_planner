@@ -23,15 +23,15 @@ class ApplicationController < Sinatra::Base
         end
       end
 
-      
+      #if user types wrong url
       error 400..510 do 
         "Caught in Error"
       end
 
       helpers do
         
+        #method returns true or false if a user is logged in or not
         def logged_in?
-          #method returns true or false if a user is logged in or not
           !!current_user
         end
 
@@ -45,8 +45,8 @@ class ApplicationController < Sinatra::Base
         end
       end
 
-        #checks if the workout to display really belongs to the logged in user
-        #if workout doesn't exist/is nil take back to workout home page
+        #if workout doesn't exist/nil take back to workout home page
+        #unless the workouts user_id is the current users id redirect
         def show_if_authorized_user
           if @workout = Workout.find_by_id(params[:id])
             unless @workout.user == current_user
