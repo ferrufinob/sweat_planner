@@ -1,16 +1,3 @@
-<!-- <% if flash.has?(:notice)%> <%= flash[:notice] %> <% end %>
-<h2>Workout</h2>
-<form action="/workouts" method="POST">
-  <input type="date" name="workout[date]" />
-  <label for="target area">Target Area</label>
-  <input type="text" name="workout[target_area]" /><br />
-  <textarea name="workout[activity]" cols="30" rows="10">Activity</textarea>
-  <br />
-  <label for="duration">Duration</label>
-  <input type="text" name="workout[duration]" />
-  <input type="submit" value="submit" />
-</form>
-<a href="/workouts">cancel</a> -->
 <section class="hero">
   <div
     class="hero-head has-background-danger-light has-text-centered has-text-weight-medium has-text-danger"
@@ -22,10 +9,8 @@
   </div>
 </section>
 <!-- Route Action -->
-
 <form action="/workouts" method="POST">
   <!-- Date -->
-
   <div class="hero">
     <div class="hero-body">
       <div class="container has-text-centered">
@@ -38,7 +23,6 @@
           </div>
         </div>
         <!-- Target Area  -->
-
         <div class="field">
           <label class="label">Target Area</label>
           <div class="control">
@@ -46,7 +30,6 @@
           </div>
         </div>
         <!-- Activity -->
-
         <div class="field">
           <div class="control">
             <label class="label">Activity</label>
@@ -57,23 +40,18 @@
           </div>
         </div>
         <!-- Duration -->
-
         <div class="field">
           <label class="label">Duration</label>
           <div class="control">
             <input type="text" name="workout[duration]" />
           </div>
-          
         </div>
-      
         <!-- Submit -->
         <input type="submit" class="button is-medium is-success is-light" value="Save">
         <!-- Cancel Button -->
         <button class="button is-medium is-danger is-light"><a href="/workouts">Cancel</a></button>
-        
       </div>
     </div>
   </div>
-  
 </div>
 </form>

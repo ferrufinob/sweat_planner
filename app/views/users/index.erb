@@ -1,12 +1,56 @@
-<h1>Update you Account</h1>
-<form action="/users/<%=current_user%>" method="POST">
-  <input type="hidden" name="_method" value="PATCH">
-  <label for="name">Name</label>
-  <input type="text" name="user[name]" value="<%=current_user.name%>">
-  <label for="email">Email</label>
-  <input type="text" name="user[email]" value="<%=current_user.email%>">
-  <label for="password">Password</label>
-  <input type="text" name="user[password]">
-  <input type="submit" name="Update">
+<section class="hero">
+  <div
+    class="hero-head has-background-danger-light has-text-centered has-text-weight-medium has-text-danger"
+  >
+    <!-- Error Display -->
+    <div class="container">
+      <% if flash.has?(:notice)%> <%= flash[:notice]%> <%end%>
+    </div>
+  </div>
+</section>
+<!-- Edit Form -->
+
+<form action="/users/<%=@user.id%>" method="POST">
+  <input type="hidden" name="_method" value="PATCH" />
+  <!-- Name -->
+  <div class="box">
+    <div class="hero">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <h1 class="title is-3">Update Account</h1>
+          <br />
+          <div class="field">
+            <label class="label">Name</label>
+            <div class="control">
+              <input type="text" name="user[name]" value="<%=@user.name%>" />
+            </div>
+          </div>
+          <!-- Target Area  -->
+
+          <div class="field">
+            <label class="label">Email</label>
+            <div class="control">
+              <input type="text" name="user[email]" value="<%=@user.email%>" />
+            </div>
+          </div>
+          <!-- Activity -->
+
+          <div class="field">
+            <div class="control">
+              <label class="label">Password</label>
+              <input name="user[password]" /> <br /><br />
+              <input
+                type="submit"
+                value="Update"
+                class="button is-success is-light"
+              />
+              <button class="button is-danger is-light">
+                <a href="/workouts">Cancel</a>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </form>
-<a href="/workouts">CANCEL</a>

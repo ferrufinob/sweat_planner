@@ -1,7 +1,5 @@
 class WorkoutsController < ApplicationController
-    # TODO: figure out how to display flash messages
-    # TODO: Do I need to display an error page if user goes to a nonexistent page??
-
+ 
     #Index/Shows all workouts
     get '/workouts' do
         redirect_if_not_logged_in

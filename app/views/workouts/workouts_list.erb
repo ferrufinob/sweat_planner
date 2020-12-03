@@ -1,3 +1,13 @@
+<section class="hero">
+  <div
+    class="hero-head has-background-danger-light has-text-centered has-text-weight-medium has-text-danger"
+  >
+    <!-- Error Display -->
+    <div class="container">
+      <% if flash.has?(:notice)%> <%= flash[:notice]%> <%end%>
+    </div>
+  </div>
+</section>
 <section class="hero is-dark ">
   <div class="hero-body">
     <div class= "container has-text-centered">
@@ -15,6 +25,7 @@
 </div>
 <!-- Workouts Show List -->
 <div class="box">
+  <p class="title is-4">Welcome, <%=current_user.name%>!</p>
   <%current_user.workouts.each do |t|%>
     <a href="/workouts/<%=t.id%>">
       <br>

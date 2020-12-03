@@ -49,7 +49,7 @@ class ApplicationController < Sinatra::Base
         #unless the workouts user_id is the current users id redirect
         def show_if_authorized_user
           if @workout = Workout.find_by_id(params[:id])
-            unless @workout.user == current_user
+            unless @workout.user == current_user 
                redirect to '/'
             end
           else
