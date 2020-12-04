@@ -1,3 +1,15 @@
+<section class="hero">
+  <div
+    class="hero-head has-background-danger has-text-centered has-text-weight-medium has-text-dark"
+  >
+    <!-- Error Display -->
+    <div class="container">
+      <% if flash.has?(:notice)%> <%= flash[:notice]%>
+      <%end%>
+    </div>
+  </div>
+</section>
+<!-- Log in Form -->
 <div class="hero is-fullheight is-light">
   <div class="hero-body">
     <div class="container has-text-centered">

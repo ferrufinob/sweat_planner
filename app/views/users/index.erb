@@ -22,35 +22,35 @@
             <label class="label">Name</label>
             <div class="control">
               <input type="text" name="user[name]" value="<%=@user.name%>" />
-            </div>
-          </div>
-          <!-- Target Area  -->
-          <div class="field">
-            <label class="label">Email</label>
-            <div class="control">
-              <input type="text" name="user[email]" value="<%=@user.email%>" />
-            </div>
-          </div>
-          <!-- Activity -->
-          <div class="field">
-            <div class="control">
-              <label class="label">Password</label>
-              <input name="user[password]" /> <br />
-              <br />
-              <input
+</div>
+</div>
+<!-- Target Area  -->
+<div class="field">
+  <label class="label">Email</label>
+  <div class="control">
+    <input type="text" name="user[email]" value="<%=@user.email%>" />
+  </div>
+</div>
+<!-- Activity -->
+<div class="field">
+  <div class="control">
+    <label class="label">Password</label>
+    <input name="user[password]" /> <br />
+    <br />
+    <input
                 type="submit"
                 value="Update"
                 class="button is-success is-light"
               />
-              <button class="button is-danger is-light">
-                <a href="/workouts">Cancel</a>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+      <button class="button is-danger is-light">
+        <a href="/workouts">Cancel</a>
+      </button>
     </div>
   </div>
+</div>
+</div>
+</div>
+</div>
 </form>
 <!-- User Delete Form -->
 <div class="buttons is-right">
@@ -58,8 +58,8 @@
     <input type="hidden" name="_method" value="DELETE" />
     <input
       type="submit"
-      class="button is-danger is-outlined"
+      class="button is-danger"
       value="DELETE ACCOUNT"
     />
-  </form>
-</div>
+    </form>
+  </div>

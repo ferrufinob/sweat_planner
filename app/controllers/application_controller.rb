@@ -50,6 +50,7 @@ class ApplicationController < Sinatra::Base
         def show_if_authorized_user
           if @workout = Workout.find_by_id(params[:id])
             unless @workout.user == current_user 
+              flash[:notice] = "Not Authorized"
                redirect to '/'
             end
           else

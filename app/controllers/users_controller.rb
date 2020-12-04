@@ -17,6 +17,7 @@ class UsersController < ApplicationController
                 session[:user_id] = user.id
                 redirect to "/workouts"
             else
+                flash[:notice] = "Fields can't be blank"
                 redirect to '/login'
         end
     end
@@ -74,7 +75,6 @@ class UsersController < ApplicationController
             user = current_user
             user.update(params[:user])
                 if user.save
-                    
                     redirect to '/workouts'
                 else
                     flash[:notice] = "Fields can't be blank"
