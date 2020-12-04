@@ -9,7 +9,6 @@
   </div>
 </section>
 <!-- Edit Form -->
-
 <form action="/users/<%=@user.id%>" method="POST">
   <input type="hidden" name="_method" value="PATCH" />
   <!-- Name -->
@@ -26,7 +25,6 @@
             </div>
           </div>
           <!-- Target Area  -->
-
           <div class="field">
             <label class="label">Email</label>
             <div class="control">
@@ -34,11 +32,11 @@
             </div>
           </div>
           <!-- Activity -->
-
           <div class="field">
             <div class="control">
               <label class="label">Password</label>
-              <input name="user[password]" /> <br /><br />
+              <input name="user[password]" /> <br />
+              <br />
               <input
                 type="submit"
                 value="Update"
@@ -54,3 +52,14 @@
     </div>
   </div>
 </form>
+<!-- User Delete Form -->
+<div class="buttons is-right">
+  <form action="/users/<%=@user.id%>" method="POST">
+    <input type="hidden" name="_method" value="DELETE" />
+    <input
+      type="submit"
+      class="button is-danger is-outlined"
+      value="DELETE ACCOUNT"
+    />
+  </form>
+</div>

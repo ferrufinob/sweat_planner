@@ -82,6 +82,17 @@ class UsersController < ApplicationController
                 end
         end
 
-        
+        #Delete/  User can delete account
+        delete '/users/:id' do
+            redirect_if_not_logged_in
+         #make sure its the logged in user that deletes their accouunt
+         user = current_user
+         if !user
+            redirect to '/'
+         else
+        user.destroy
+         redirect to '/workouts'
+    end
+        end
 
 end
