@@ -45,8 +45,8 @@ end
     end
 
     patch '/workouts/:id' do
-        
-         @workout = Workout.find_by_id(params[:id])
+         #update won't be saved if not authorized user
+         show_if_authorized_user
          @workout.update(params[:workout])
 
          if @workout.save

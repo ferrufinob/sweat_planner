@@ -53,7 +53,7 @@ class UsersController < ApplicationController
             end
         end
 
-# An option is User wants to Update their Account
+# An option if User wants to Update their Account
 
 
     # Users Account Show Page
@@ -83,16 +83,16 @@ class UsersController < ApplicationController
         end
 
         #Delete/  User can delete account
-        delete '/users/:id' do
+         delete '/users/:id' do
             redirect_if_not_logged_in
-         #make sure its the logged in user that deletes their accouunt
-         user = current_user
-         if !user
-            redirect to '/'
-         else
-        user.destroy
-         redirect to '/workouts'
-    end
+            #make sure its the logged in user that deletes their accouunt
+            user = current_user
+            if !user
+                redirect to '/'
+            else
+                user.destroy
+                redirect to '/workouts'
+            end
         end
 
 end
