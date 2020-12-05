@@ -3,6 +3,7 @@
     class="hero-head has-background-danger has-text-centered has-text-weight-medium has-text-dark"
   >
     <!-- Error Display -->
+    
     <div class="container">
       <% if flash.has?(:notice)%> <%= flash[:notice]%> <%end%>
     </div>
@@ -17,13 +18,17 @@
     </div>
   </div>
 </section>
+
 <!-- Nav Buttons -->
+
 <div class="buttons is-centered">
   <button class="button is-light"><a href="/workouts/new">New Workout</a></button>
   <button class="button is-light"><a href="/users/<%=current_user.id%>/edit">Update Account</a></button>
   <button class="button is-light"><a href="/logout">Log out</a></button>
 </div>
+
 <!-- Workouts Show List -->
+
 <div class="box">
   <p class="title is-4">Welcome, <%=current_user.name%>!</p>
   <%current_user.workouts.each do |workout|%>
@@ -35,7 +40,9 @@
           <%=workout.date.strftime("%A, %B %d")%></br>
       </h5>
       <div class="has-text-right">
+
         <!-- DELETE FORM -->
+
         <form action="/workouts/<%=workout.id%>" method="POST">
           <input type="hidden" name="_method" value="DELETE">
           <input type="submit" class="button is-danger is-outlined" value="DELETE">
