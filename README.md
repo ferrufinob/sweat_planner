@@ -15,3 +15,4 @@ Sweat Planner Allows a user to create and save workouts. A user can create as ma
 ## License
 
 The app is available as open source under the terms of the MIT License.
+https://github.com/ferrufinob/sweat_planner/blob/master/LICENSE
