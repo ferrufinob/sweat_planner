@@ -15,7 +15,7 @@ class WorkoutsController < ApplicationController
     post '/workouts' do
         redirect_if_not_logged_in
          # user is not able to submit form if not able to save(can't save empty fields)
-            workout = Workout.create(params[:workout])
+            workout = Workout.new(params[:workout])
 
             #workout automatically saves when .save is called
             if workout.save
