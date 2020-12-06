@@ -17,7 +17,7 @@ class UsersController < ApplicationController
                 session[:user_id] = user.id
                 redirect to "/workouts"
             else
-                flash[:notice] = "Fields can't be blank"
+                flash[:notice] = "Invalid Input"
                 redirect to '/login'
         end
     end
