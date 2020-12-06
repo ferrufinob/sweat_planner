@@ -23,7 +23,7 @@ class WorkoutsController < ApplicationController
                 current_user.workouts << workout
                 redirect to "/workouts/#{workout.id}"
             else 
-                flash[:notice] = "Fields can't be blank"
+                @errors = workout.errors.full_messages
                 erb :'/workouts/new_workout'
             end
 end
