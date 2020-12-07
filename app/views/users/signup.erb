@@ -3,75 +3,78 @@
     class="hero-head has-background-danger has-text-centered has-text-weight-medium has-text-dark"
   >
     <!-- Error Display -->
-
     <div class="container">
-      <% if @errors%> <%@errors.each do |error|%> <%=error%><br />
-      <%end%> <%end%>
+      <% if flash.has?(:notice)%> <%= flash[:notice]%> <%end%>
     </div>
   </div>
 </section>
-<div class="hero is-fullheight is-light">
-  <div class="hero-body">
-    <div class="container has-text-centered">
-      <div class="column is-4 is-offset-4">
-        <h3 class="title has-text-dark">SIGN UP</h3>
-        <hr class="login-hr" />
-        <div class="title has-text-grey is-6">
-          Create your account by filling the form below.
-        </div>
-
-        <!-- User Name -->
-
-        <form action="/signup" method="POST">
-          <div class="field">
-            <div class="control">
-              <input
+<div class="hero-body">
+  <section class="hero">
+    <div
+    class="hero-head has-background-danger has-text-centered has-text-weight-medium has-text-dark"
+  >
+      <!-- Error Display -->
+      <div class="container">
+        <% if @errors%> <%@errors.each do |error|%> <%=error%><br />
+          <%end%> <%end%>
+      </div>
+    </div>
+  </section>
+  <div class="hero is-fullheight is-light">
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <div class="column is-4 is-offset-4">
+          <h3 class="title has-text-dark">SIGN UP</h3>
+          <hr class="login-hr" />
+          <div class="title has-text-grey is-6">
+            Create your account by filling the form below.
+          </div>
+          <!-- User Name -->
+          <form action="/signup" method="POST">
+            <div class="field">
+              <div class="control">
+                <input
                 class="input is-medium"
                 type="name"
                 name="user[name]"
                 placeholder="Name"
               />
-            </div>
-          </div>
-
-          <!--User Email  -->
-
-          <div class="field">
-            <div class="control">
-              <input
+                </div>
+              </div>
+              <!--User Email  -->
+              <div class="field">
+                <div class="control">
+                  <input
                 class="input is-medium"
                 type="text"
                 name="user[email]"
                 placeholder="Email"
               />
-            </div>
-          </div>
-
-          <!-- User Password -->
-
-          <div class="field">
-            <div class="control">
-              <input
+                  </div>
+                </div>
+                <!-- User Password -->
+                <div class="field">
+                  <div class="control">
+                    <input
                 class="input is-medium"
                 type="text"
                 name="user[password]"
                 placeholder="Password"
               />
-              <button
+                      <button
                 class="button is-block is-dark is-medium is-fullwidth"
                 type="submit"
               >
-                <!-- Log in Navigation Link -->
-
-                SIGN UP
-              </button>
-              <p class="has-text-grey">
-                Already a member? <a href="/login">Log in</a>
-              </p>
+                        <!-- Log in Navigation Link -->
+                        SIGN UP
+                      </button>
+                      <p class="has-text-grey">
+                        Already a member? <a href="/login">Log in</a>
+                      </p>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+        </div>
