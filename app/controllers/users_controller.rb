@@ -83,32 +83,28 @@ class UsersController < ApplicationController
         end
 
         #Delete/  User can delete account
-         delete '/users/:id' do
-            redirect_if_not_logged_in
-          
-           workouts = Workout.all
-           workouts.each do |workout|
-           if workout.user_id == current_user.id
-            workout.destroy
-           end
-        end
-            if current_user
-            current_user.destroy
-            session.clear
-            flash[:notice] = "Successfully deleted account"
-            redirect to '/signup'
-            else 
-                redirect to '/'
+            delete '/users/:id' do
+                redirect_if_not_logged_in
+                workouts = Workout.all
+                workouts.each do |workout|
+                    
+                if workout.user_id == current_user.id
+                    workout.destroy
+                end
             end
-        end
-
-            
+                
+            if current_user
+                    current_user.destroy
+                    session.clear
+                    flash[:notice] = "Successfully deleted account"
+                    redirect to '/signup'
+                else 
+                    redirect to '/'
+                end
+            end
            
         
-        
-        
-        
-            
+    
 
                
 
