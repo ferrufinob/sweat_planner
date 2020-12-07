@@ -61,7 +61,7 @@ class UsersController < ApplicationController
              #prevents unauthorized user from viewing another users account info
              redirect_if_not_logged_in
             #prevent another user from changing personal info if tempering with url
-             if @user = current_user
+             if current_user
                 erb :'users/index'
              else 
                 redirect to '/'
@@ -72,7 +72,8 @@ class UsersController < ApplicationController
         patch '/users/:id' do
             #if unauthorized user gets access of show page password can't be accessed and any attempted changes wont be saved
             redirect_if_not_logged_in
-            user = current_user
+            user = User.find_by_id(params[:id])
+            if user == current_user
             user.update(params[:user])
                 if user.save
                     redirect to '/workouts'
@@ -80,7 +81,10 @@ class UsersController < ApplicationController
                     flash[:notice] = "Fields can't be blank"
                     redirect to "/users/#{user.id}/edit"
                 end
+            else 
+                redirect to '/'
         end
+    end
 
         #Delete/  User can delete account
             delete '/users/:id' do

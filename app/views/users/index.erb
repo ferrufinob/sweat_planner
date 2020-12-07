@@ -9,7 +9,7 @@
   </div>
 </section>
 <!-- Edit Form -->
-<form action="/users/<%=@user.id%>" method="POST">
+<form action="/users/<%=current_user.id%>" method="POST">
   <input type="hidden" name="_method" value="PATCH" />
   <!-- Name -->
   <div class="box">
@@ -21,14 +21,14 @@
           <div class="field">
             <label class="label">Name</label>
             <div class="control">
-              <input type="text" name="user[name]" value="<%=@user.name%>" />
+              <input type="text" name="user[name]" value="<%=current_user.name%>" />
 </div>
 </div>
 <!-- Target Area  -->
 <div class="field">
   <label class="label">Email</label>
   <div class="control">
-    <input type="text" name="user[email]" value="<%=@user.email%>" />
+    <input type="text" name="user[email]" value="<%=current_user.email%>" />
   </div>
 </div>
 <!-- Activity -->
@@ -54,7 +54,7 @@
 </form>
 <!-- User Delete Form -->
 <div class="buttons is-right">
-  <form action="/users/<%=@user.id%>" method="POST">
+  <form action="/users/<%=current_user.id%>" method="POST">
     <input type="hidden" name="_method" value="DELETE" />
     <input
       type="submit"
