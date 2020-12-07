@@ -91,7 +91,7 @@ class UsersController < ApplicationController
                 redirect to '/'
             else
                 user.destroy
-                redirect to '/workouts'
+                redirect to '/signup'
             end
         end
 
