@@ -88,15 +88,7 @@ class UsersController < ApplicationController
 
         #Delete/  User can delete account
             delete '/users/:id' do
-                redirect_if_not_logged_in
-                workouts = Workout.all
-                workouts.each do |workout|
-                    
-                if workout.user_id == current_user.id
-                    workout.destroy
-                end
-            end
-                
+                redirect_if_not_logged_in 
             if current_user
                     current_user.destroy
                     session.clear
