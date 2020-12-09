@@ -5,7 +5,7 @@
     <!-- Error Display -->
 
     <div class="container">
-      <% if flash.has?(:notice)%> <%= flash[:notice]%> <%end%>
+      <% if flash.has?(:notice) %> <%= flash[:notice] %> <% end %>
     </div>
   </div>
 </section>
@@ -29,7 +29,7 @@
             <div class="control">
               <input
                 class="input is-medium"
-                type="text"
+                type="email"
                 name="user[email]"
                 placeholder="Email"
               />
@@ -42,7 +42,7 @@
             <div class="control">
               <input
                 class="input is-medium"
-                type="text"
+                type="password"
                 name="user[password]"
                 placeholder="Password"
               />

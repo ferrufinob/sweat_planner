@@ -4,8 +4,8 @@
       <!-- Target Type and Date  Section-->
 
       <div class="container has-text-centered">
-        <h4 class="title is-3"><%=@workout.target_area%></h4>
-        <p class="subtitle is-5"><%=@workout.date.strftime("%A, %B %d")%></p>
+        <h4 class="title is-3"><%= @workout.target_area %></h4>
+        <p class="subtitle is-5"><%= @workout.date.strftime("%A, %B %d") %></p>
       </div>
     </div>
   </section>
@@ -18,7 +18,7 @@
       <a href="/workouts/workouts">Home</a>
     </button>
     <button class="button is-light">
-      <a href="/workouts/<%=@workout.id%>/edit">Edit</a>
+      <a href="/workouts/<%= @workout.id %>/edit">Edit</a>
     </button>
   </div>
 </div>
@@ -29,9 +29,9 @@
   <p class="title is-4">Activity Planned Today:</p>
   <div class="subtitle is-5 has-text-weight-semibold">
     <br />
-    <%=@workout.activity.gsub(URI.regexp,'<a href="\0">\0</a>').gsub(/\n/, '<br />''<br />')%>
+    <%= @workout.activity.gsub(URI.regexp, '<a href="\0">\0</a>').gsub(/\n/, "<br />" "<br />") %>
   </div>
   <div class="has-text-danger has-text-centered">
-    Duration: <%=@workout.duration%>
+    Duration: <%= @workout.duration %>
   </div>
 </div>

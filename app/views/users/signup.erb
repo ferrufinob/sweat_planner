@@ -4,7 +4,7 @@
   >
     <!-- Error Display -->
     <div class="container">
-      <% if flash.has?(:notice)%> <%= flash[:notice]%> <%end%>
+      <% if flash.has?(:notice) %> <%= flash[:notice] %> <% end %>
     </div>
   </div>
 </section>
@@ -15,8 +15,8 @@
   >
       <!-- Error Display -->
       <div class="container">
-        <% if @errors%> <%@errors.each do |error|%> <%=error%><br />
-          <%end%> <%end%>
+        <% if @errors %> <% @errors.each do |error| %> <%= error %><br />
+          <% end %> <% end %>
       </div>
     </div>
   </section>
@@ -35,7 +35,7 @@
               <div class="control">
                 <input
                 class="input is-medium"
-                type="name"
+                type="text"
                 name="user[name]"
                 placeholder="Name"
               />
@@ -46,7 +46,7 @@
                 <div class="control">
                   <input
                 class="input is-medium"
-                type="text"
+                type="email"
                 name="user[email]"
                 placeholder="Email"
               />
@@ -57,7 +57,7 @@
                   <div class="control">
                     <input
                 class="input is-medium"
-                type="text"
+                type="password"
                 name="user[password]"
                 placeholder="Password"
               />
