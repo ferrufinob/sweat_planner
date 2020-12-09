@@ -9,7 +9,6 @@ class UsersController < ApplicationController
     end
   end
 
-  #recieve the params from login form
   post "/login" do
     user = User.find_by(email: params[:user][:email])
 
@@ -48,53 +47,21 @@ class UsersController < ApplicationController
       session[:user_id] = new_user.id
       redirect to "/workouts"
     else
-      #result of validations from AR
       @errors = new_user.errors.full_messages
       erb :'/users/signup'
     end
   end
 
-  # An option if User wants to Update their Account
-
-  # Users Account Show Page
-  get "/users/:id/edit" do
-    #prevents unauthorized user from viewing another users account info
-    redirect_if_not_logged_in
-    #prevent another user from changing personal info if tempering with url
-    if current_user
-      erb :'users/index'
-    else
-      redirect to "/"
-    end
-  end
-
-  patch "/users/:id" do
-    #if unauthorized user gets access of show page password can't be accessed and any attempted changes wont be saved
-    redirect_if_not_logged_in
-    user = User.find_by_id(params[:id])
-    if user == current_user
-      user.update(params[:user])
-      if user.save
-        redirect to "/workouts"
-      else
-        flash[:notice] = "Fields can't be blank"
-        redirect to "/users/#{user.id}/edit"
-      end
-    else
-      redirect to "/"
-    end
-  end
-
   #Delete/  User can delete account
-  # delete "/users/:id" do
-  #   redirect_if_not_logged_in
-  #   if current_user
-  #     current_user.destroy
-  #     session.clear
-  #     flash[:notice] = "Successfully deleted account"
-  #     redirect to "/signup"
-  #   else
-  #     redirect to "/"
-  #   end
-  # end
+  delete "/users/:id" do
+    redirect_if_not_logged_in
+    if current_user
+      current_user.destroy
+      session.clear
+      flash[:notice] = "Successfully deleted account"
+      redirect to "/signup"
+    else
+      redirect to "/"
+    end
+  end
 end

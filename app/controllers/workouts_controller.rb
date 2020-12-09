@@ -15,12 +15,8 @@ class WorkoutsController < ApplicationController
 
   post "/workouts" do
     redirect_if_not_logged_in
-    # user is not able to submit form if not able to save(can't save empty fields)
     workout = Workout.new(params[:workout])
-
-    #workout automatically saves when .save is called
     if workout.save
-      #need this line to assign the correct workout to its corresponding user
       current_user.workouts << workout
       redirect to "/workouts/#{workout.id}"
     else
@@ -32,7 +28,6 @@ class WorkoutsController < ApplicationController
   #READ/Shows a specific  workout
   get "/workouts/:id" do
     redirect_if_not_logged_in
-    #checking if workout belongs to current user and if workout exists
     show_if_authorized_user
     erb :'/workouts/view_workout'
   end
@@ -40,13 +35,11 @@ class WorkoutsController < ApplicationController
   #UPDATE/Edit a specific workout
   get "/workouts/:id/edit" do
     redirect_if_not_logged_in
-    #checking if workout belongs to current user and if workout exists
     show_if_authorized_user
     erb :'/workouts/edit_workout'
   end
 
   patch "/workouts/:id" do
-    #update won't be saved if not authorized user
     show_if_authorized_user
     @workout.update(params[:workout])
 
@@ -62,7 +55,6 @@ class WorkoutsController < ApplicationController
   delete "/workouts/:id" do
     redirect_if_not_logged_in
     workout = Workout.find_by_id(params[:id])
-    #make sure its the logged in user that deleted the workout
     if workout.user != current_user
       redirect to "/"
     else
