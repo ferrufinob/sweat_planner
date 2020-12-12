@@ -32,12 +32,12 @@ class ApplicationController < Sinatra::Base
     end
 
     def redirect_if_not_logged_in
-      redirect to "/login" if !logged_in?
+      redirect to "/login" unless logged_in?
     end
   end
 
-  #if workout doesn't exist/nil take back to workout home page
-  #unless the workouts user_id evaluate to the current users id, redirect
+  # if workout doesn't exist/nil take back to workout home page
+  # unless the workouts user_id evaluate to the current users id, redirect
   def show_if_authorized_user
     if @workout = Workout.find_by_id(params[:id])
       unless @workout.user == current_user

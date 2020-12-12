@@ -2,7 +2,6 @@
   <section class="hero is-dark">
     <div class="hero-body">
       <!-- Target Type and Date  Section-->
-
       <div class="container has-text-centered">
         <h4 class="title is-3"><%= @workout.target_area %></h4>
         <p class="subtitle is-5"><%= @workout.date.strftime("%A, %B %d") %></p>
@@ -10,9 +9,7 @@
     </div>
   </section>
   <br />
-
   <!-- Home and and Delete Navigation -->
-
   <div class="buttons is-centered">
     <button class="button is-light">
       <a href="/workouts/workouts">Home</a>
@@ -22,9 +19,7 @@
     </button>
   </div>
 </div>
-
 <!-- Activity & Duration Section -->
-
 <div class="box has-text-centered">
   <p class="title is-4">Activity Planned Today:</p>
   <div class="subtitle is-5 has-text-weight-semibold">
@@ -35,3 +30,4 @@
     Duration: <%= @workout.duration %>
   </div>
 </div>
+ 
