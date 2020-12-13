@@ -1,10 +1,10 @@
 <section class="hero">
-  <div
-    class="hero-head has-background-danger has-text-centered has-text-weight-medium has-text-dark"
-  >
+  <div class="hero-head has-background-danger has-text-centered has-text-weight-medium has-text-dark">
     <!-- Error Display -->
     <div class="container">
-      <% if flash.has?(:notice) %> <%= flash[:notice] %> <% end %>
+      <% if flash.has?(:notice) %>
+        <%= flash[:notice] %>
+          <% end %>
     </div>
   </div>
 </section>
@@ -22,37 +22,24 @@
         <form action="/login" method="POST">
           <div class="field">
             <div class="control">
-              <input
-                class="input is-medium"
-                type="email"
-                name="user[email]"
-                placeholder="Email"
-              />
-              </div>
+              <input class="input is-medium" type="email" name="user[email]" placeholder="Email" />
             </div>
-            <!-- User Password -->
-            <div class="field">
-              <div class="control">
-                <input
-                class="input is-medium"
-                type="password"
-                name="user[password]"
-                placeholder="Password"
-              />
-                  <button
-                class="button is-block is-dark is-medium is-fullwidth"
-                type="submit"
-              >
-                    <!-- Sign up Navigation Link-->
-                    Login
-                  </button>
-                  <p class="has-text-grey">
-                    Don't Have an Account? <a href="/signup">Sign Up</a>
-                  </p>
-                </div>
-              </div>
-            </form>
           </div>
-        </div>
+          <!-- User Password -->
+          <div class="field">
+            <div class="control">
+              <input class="input is-medium" type="password" name="user[password]" placeholder="Password" />
+              <button class="button is-block is-dark is-medium is-fullwidth" type="submit">
+                <!-- Sign up Navigation Link-->
+                Login
+              </button>
+              <p class="has-text-grey">
+                Don't Have an Account? <a href="/signup">Sign Up</a>
+              </p>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
+  </div>
+</div>

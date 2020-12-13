@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  #LOGIN
+  #NEW SESSION
   get "/login" do
     if logged_in?
       redirect to "/workouts"
@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     end
   end
 
+  #CREATE SESSION
   post "/login" do
     user = User.find_by(email: params[:user][:email])
 
@@ -21,7 +22,7 @@ class UsersController < ApplicationController
     end
   end
 
-  #LOGOUT
+  #DESTROY SESSION
   get "/logout" do
     if logged_in?
       session.clear
@@ -31,7 +32,7 @@ class UsersController < ApplicationController
     end
   end
 
-  #SIGNUP
+  #NEW USER
   get "/signup" do
     if !logged_in?
       erb :'users/signup'
@@ -40,6 +41,7 @@ class UsersController < ApplicationController
     end
   end
 
+  #CREATE USER
   post "/signup" do
     new_user = User.new(params[:user])
 
@@ -52,7 +54,7 @@ class UsersController < ApplicationController
     end
   end
 
-  #Delete/  User can delete account
+  #DELETE USER
   delete "/users/:id" do
     redirect_if_not_logged_in
     if current_user
