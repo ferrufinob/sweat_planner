@@ -3,13 +3,13 @@ class WorkoutsController < ApplicationController
   #Index
   get "/workouts" do
     redirect_if_not_logged_in
-    erb :'workouts/workouts_list'
+    erb :'workouts/index'
   end
 
   #NEW
   get "/workouts/new" do
     redirect_if_not_logged_in
-    erb :'/workouts/new_workout'
+    erb :'/workouts/new'
   end
 
   #CREATE
@@ -21,7 +21,7 @@ class WorkoutsController < ApplicationController
       redirect to "/workouts/#{workout.id}"
     else
       @errors = workout.errors.full_messages
-      erb :'/workouts/new_workout'
+      erb :'/workouts/new'
     end
   end
 
@@ -29,14 +29,14 @@ class WorkoutsController < ApplicationController
   get "/workouts/:id" do
     redirect_if_not_logged_in
     show_if_authorized_user
-    erb :'/workouts/view_workout'
+    erb :'/workouts/show'
   end
 
   #UPDATE
   get "/workouts/:id/edit" do
     redirect_if_not_logged_in
     show_if_authorized_user
-    erb :'/workouts/edit_workout'
+    erb :'/workouts/edit'
   end
 
   #EDIT
@@ -48,7 +48,7 @@ class WorkoutsController < ApplicationController
       redirect to "/workouts/#{@workout.id}"
     else
       flash[:notice] = "Fields can't be blank"
-      erb :'/workouts/edit_workout'
+      erb :'/workouts/edit'
     end
   end
 
