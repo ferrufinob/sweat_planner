@@ -16,6 +16,7 @@ class WorkoutsController < ApplicationController
   post "/workouts" do
     redirect_if_not_logged_in
     workout = current_user.workouts.build(params[:workout])
+
     if workout.save
       redirect to "/workouts/#{workout.id}"
     else
@@ -41,9 +42,7 @@ class WorkoutsController < ApplicationController
   #EDIT
   patch "/workouts/:id" do
     show_if_authorized_user
-    @workout.update(params[:workout])
-
-    if @workout.save
+    if @workout.update(params[:workout])
       redirect to "/workouts/#{@workout.id}"
     else
       flash[:notice] = "Fields can't be blank"
@@ -55,11 +54,11 @@ class WorkoutsController < ApplicationController
   delete "/workouts/:id" do
     redirect_if_not_logged_in
     workout = Workout.find_by_id(params[:id])
-    if workout.user != current_user
-      redirect to "/"
-    else
+    if workout.user = current_user
       workout.destroy
       redirect to "/workouts"
+    else
+      redirect to "/"
     end
   end
 end

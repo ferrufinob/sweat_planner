@@ -11,10 +11,10 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    if !logged_in?
-      erb :welcome
-    else
+    if logged_in?
       redirect to "/workouts"
+    else
+      erb :welcome
     end
   end
 
