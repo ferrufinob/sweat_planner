@@ -15,9 +15,8 @@ class WorkoutsController < ApplicationController
   #CREATE
   post "/workouts" do
     redirect_if_not_logged_in
-    workout = Workout.new(params[:workout])
+    workout = current_user.workouts.build(params[:workout])
     if workout.save
-      current_user.workouts << workout
       redirect to "/workouts/#{workout.id}"
     else
       @errors = workout.errors.full_messages
