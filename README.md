@@ -13,8 +13,6 @@ Sweat Planner is a flexible workout planner thats helps users with the structure
 - [x] User Authorization and Authentication
 - [x] Model Validations
 
-![form](form.png)
-
 ## Install Instruction
 
 ```ruby
