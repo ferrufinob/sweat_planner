@@ -8,8 +8,8 @@ Sweat Planner is a flexible workout planner thats helps users with the structure
 
 ## Features
 
-- [x] User => signup, login, signout, & delete
-- [x] Workouts => Full CRUD
+- [x] User: signup, login, signout, & delete
+- [x] Workouts: Full CRUD
 - [x] User Authorization and Authentication
 - [x] Model Validations
 
